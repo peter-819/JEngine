@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="JEngine">
+      <UniqueIdentifier>{45F009ED-B1CF-8888-BAE7-135F2646EFE9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JEngine\Events">
+      <UniqueIdentifier>{89FCAFF9-75CA-A3FF-5E5E-14264ACB7F64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JEngine\ImGui">
+      <UniqueIdentifier>{2FC5389B-9B85-B4D1-64C0-FD4ED03FF9AD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\JEngine.h" />
+    <ClInclude Include="src\JEngine\Application.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\EntryPoint.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Events\ApplicationEvent.h">
+      <Filter>JEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Events\Event.h">
+      <Filter>JEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Events\KeyEvent.h">
+      <Filter>JEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Events\MouseEvent.h">
+      <Filter>JEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\ImGui\ImGuiLayer.h">
+      <Filter>JEngine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Layer.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\LayerStack.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Log.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Window.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\core.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEpch.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\JEngine\Input.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\JEngine\Application.cpp">
+      <Filter>JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>JEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Layer.cpp">
+      <Filter>JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\LayerStack.cpp">
+      <Filter>JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Log.cpp">
+      <Filter>JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEpch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\JEngine\keycode.h" />
+  </ItemGroup>
+</Project>
