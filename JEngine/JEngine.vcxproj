@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>JEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;JE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;JE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -102,7 +102,7 @@
       <PrecompiledHeaderFile>JEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;JE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;JE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -128,7 +128,7 @@
       <PrecompiledHeaderFile>JEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;JE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;JE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog-1.x\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -163,6 +163,7 @@
     <ClInclude Include="src\JEngine\Log.h" />
     <ClInclude Include="src\JEngine\Window.h" />
     <ClInclude Include="src\JEngine\core.h" />
+    <ClInclude Include="src\JEngine\keycode.h" />
     <ClInclude Include="src\JEpch.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -171,7 +172,6 @@
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp" />
     <ClCompile Include="src\JEngine\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\JEngine\keycode.h" />
     <ClCompile Include="src\JEngine\Layer.cpp" />
     <ClCompile Include="src\JEngine\LayerStack.cpp" />
     <ClCompile Include="src\JEngine\Log.cpp" />
@@ -189,8 +189,8 @@
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\imgui\imgui.vcxproj">
-      <Project>{0098A80F-6CAC-D0C0-352E-7420A101CDF1}</Project>
+    <ProjectReference Include="vendor\JEimgui\JEimgui.vcxproj">
+      <Project>{6FB8B2EC-DB97-3188-E4AF-BC5E500E98E9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

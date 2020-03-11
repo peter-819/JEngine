@@ -43,6 +43,9 @@
     <ClInclude Include="src\JEngine\ImGui\ImGuiLayer.h">
       <Filter>JEngine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\Input.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\JEngine\Layer.h">
       <Filter>JEngine</Filter>
     </ClInclude>
@@ -58,15 +61,19 @@
     <ClInclude Include="src\JEngine\core.h">
       <Filter>JEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\keycode.h">
+      <Filter>JEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\JEpch.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\JEngine\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -88,10 +95,11 @@
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\JEngine\keycode.h" />
   </ItemGroup>
 </Project>

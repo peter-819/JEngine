@@ -14,11 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "JEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "JEngine/vendor/Glad/include"
-IncludeDir["imgui"] = "JEngine/vendor/imgui"
+IncludeDir["JEimgui"] = "JEngine/vendor/JEimgui"
 
 include "JEngine/vendor/GLFW"
 include "JEngine/vendor/Glad"
-include "JEngine/vendor/imgui"
+include "JEngine/vendor/JEimgui"
 
 project "JEngine"
 	location "JEngine"
@@ -46,7 +46,7 @@ project "JEngine"
 		"JEngine/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.JEimgui}"
 	}
 
 	links
@@ -54,7 +54,7 @@ project "JEngine"
 		"GLFW",
 		"Glad",
 		"opengl32.lib",
-		"imgui"
+		"JEimgui"
 	}
 
 	filter "system:windows"
