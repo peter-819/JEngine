@@ -7,6 +7,8 @@
 #include "Events/KeyEvent.h"
 #include "LayerStack.h"
 
+#include "JEngine/ImGui/ImGuiLayer.h"
+
 namespace JEngine {
 	class JE_API Application
 	{
@@ -24,11 +26,13 @@ namespace JEngine {
 
 		inline Window& GetWindow() { return *m_Window; }
 		inline static Application& Get() { return *s_Instance; }
+	
 	private:
 		LayerStack m_LayerStack;
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool m_Running = true;
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 
 	private:
 		static Application* s_Instance;

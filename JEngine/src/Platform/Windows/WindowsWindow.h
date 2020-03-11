@@ -3,6 +3,7 @@
 #include "JEngine/Window.h"
 
 #include "GLFW/glfw3.h"
+#include "JEngine/Renderer/OpenGLContext.h"
 
 namespace JEngine {
 	class WindowsWindow : public Window {
@@ -30,7 +31,7 @@ namespace JEngine {
 	private:
 
 		GLFWwindow* m_Window;
-
+		OpenGLContext* m_Context;
 		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;

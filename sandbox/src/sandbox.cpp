@@ -16,7 +16,7 @@ public:
 			
 			if (JEngine::Input::IsKeyPressed(JE_KEY_LEFT_SHIFT))
 				JE_CLIENT_TRACE("left shift pressed !");
-			JE_CLIENT_TRACE("{0}, {1}", (char)e.GetKeyCode(),e.GetRepeatCount());
+			JE_CLIENT_TRACE("??? {0}, {1}", (char)e.GetKeyCode(),e.GetRepeatCount());
 		}
 		//JE_CLIENT_TRACE("{0}", event);
 	}
@@ -26,7 +26,6 @@ class sandbox : public JEngine::Application {
 public:
 	sandbox(){
 		PushLayer(new ExampleLayer());
-		PushOverLayer(new JEngine::ImGuiLayer());
 	}
 	~sandbox(){}
 	virtual void run()override{

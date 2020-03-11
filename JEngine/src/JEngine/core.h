@@ -1,9 +1,13 @@
 #ifdef JE_PLATFORM_WINDOWS
-	#ifdef JE_BUILD_DLL
-		#define JE_API __declspec(dllexport)	
+	#ifdef JE_EXPORT_DLL
+		#ifdef JE_BUILD_DLL
+			#define JE_API __declspec(dllexport)	
+		#else
+			#define JE_API __declspec(dllimport)
+		#endif
 	#else
-		#define JE_API __declspec(dllimport)
-	#endif 
+		#define JE_API
+	#endif
 #else
 	#error JEning only supports windows platform !!
 #endif

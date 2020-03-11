@@ -38,9 +38,13 @@ namespace JEngine {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(JE_BIND_EVENT_FN(Application::OnEvent));
 		glTriangleTest();
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverLayer(m_ImGuiLayer);
 	}
 
 	void Application::OnEvent(Event& e) {
+		JE_CORE_INFO("{0}", e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(JE_BIND_EVENT_FN(Application::OnWindowClose));
 	
@@ -73,6 +77,11 @@ namespace JEngine {
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();
 
