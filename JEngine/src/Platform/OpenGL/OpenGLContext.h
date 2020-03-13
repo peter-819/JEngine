@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "GLFW/glfw3.h"
-#include "GraphicContext.h"
+#include "JEngine/Renderer/GraphicContext.h"
 
 namespace JEngine {
 	

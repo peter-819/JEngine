@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "JEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "JEngine/vendor/Glad/include"
 IncludeDir["JEimgui"] = "JEngine/vendor/JEimgui"
+IncludeDir["glm"] = "JEngine/vendor/glm"
 
 include "JEngine/vendor/GLFW"
 include "JEngine/vendor/Glad"
@@ -37,8 +38,12 @@ project "JEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		
 		"%{prj.name}/platform/**.h",
-		"%{prj.name}/platform/**.cpp"
+		"%{prj.name}/platform/**.cpp",
+
+		"%{prj.name}/vendor/glm/**.hpp",
+		"%{prj.name}/vendor/glm/**.inl"
 	}
 
 	includedirs
@@ -47,7 +52,8 @@ project "JEngine"
 		"JEngine/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.JEimgui}"
+		"%{IncludeDir.JEimgui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -104,7 +110,8 @@ project "sandbox"
 	includedirs
 	{
 		"JEngine/vendor/spdlog-1.x/include",
-		"JEngine/src"
+		"JEngine/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

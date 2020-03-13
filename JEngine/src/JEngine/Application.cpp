@@ -4,40 +4,81 @@
 #include "Log.h"
 #include <glad/glad.h>
 #include "Input.h"
+#include "JEngine/Renderer/BufferLayout.h"
+#include "JEngine/Renderer/RenderCommand.h"
 
 namespace JEngine {
 
 	Application* Application::s_Instance = nullptr;
 
+	static GLenum GLShaderDataTypeToGLBaseType(ShaderDataType type) {
+		switch (type) {
+		case ShaderDataType::Float:      return GL_FLOAT;
+		case ShaderDataType::Float2:     return GL_FLOAT;
+		case ShaderDataType::Float3:     return GL_FLOAT;
+		case ShaderDataType::Float4:     return GL_FLOAT;
+		case ShaderDataType::Mat3:       return GL_FLOAT;
+		case ShaderDataType::Mat4:       return GL_FLOAT;
+		case ShaderDataType::Int:        return GL_INT;
+		case ShaderDataType::Int2:       return GL_INT;
+		case ShaderDataType::Int3:       return GL_INT;
+		case ShaderDataType::Int4:       return GL_INT;
+		case ShaderDataType::Bool:       return GL_BOOL;
+		}
+		JE_CORE_ASSERT(false, "invalid ShaderDataType");
+		return 0;
+	}
+
 	void Application::glTriangleTest() {
+		std::shared_ptr<VertexBuffer> vertexbuffer;
+		std::shared_ptr<IndexBuffer> indexbuffer;
+		
 		float verts[] = {
 			-1.0f, -1.0f,
 			+0.0f, +1.0f,
 			+1.0f, -1.0f,
 		};
-		GLushort ind[] = { 0,1,2 };
+		uint32_t ind[] = { 0,1,2 };
 
-		GLuint VBID;
-		glGenBuffers(1, &VBID);
-		glBindBuffer(GL_ARRAY_BUFFER, VBID);
-		glBufferData(GL_ARRAY_BUFFER, sizeof verts, verts, GL_STATIC_DRAW);
+		vertexbuffer.reset(VertexBuffer::Create(verts,sizeof verts));
+		vertexbuffer->SetLayout({
+				{"Position", ShaderDataType::Float2}
+			});
 
-		GLuint EBID;
-		glGenBuffers(1, &EBID);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof ind, ind, GL_STATIC_DRAW);
+		indexbuffer.reset(IndexBuffer::Create(ind, 3));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+		m_tri_VertexArray.reset(VertexArray::Create());
+		m_tri_VertexArray->AddVertexBuffer(vertexbuffer);
+		m_tri_VertexArray->AddIndexBuffer(indexbuffer);
+		
+		float sqverts[] = {
+			-0.7f, -0.7f,
+			-0.7f, +0.7f,
+			+0.7f, +0.7f,
+			+0.7f, -0.7f,
+		};
+		uint32_t sqind[] = { 0,1,2,2,3,0 };
+
+		vertexbuffer.reset(VertexBuffer::Create(sqverts, sizeof sqverts));
+		vertexbuffer->SetLayout({
+				{ "Postion",ShaderDataType::Float2 } 
+			});
+
+		indexbuffer.reset(IndexBuffer::Create(sqind, 6));
+
+		m_sq_VertexArray.reset(VertexArray::Create());
+		m_sq_VertexArray->AddVertexBuffer(vertexbuffer);
+		m_sq_VertexArray->AddIndexBuffer(indexbuffer);
 	}
 
 	Application::Application(){
+		//Renderer::SetAPI(RenderAPI::OpenGL);
+
 		JE_CORE_ASSERT(!s_Instance, "Already have a application");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(JE_BIND_EVENT_FN(Application::OnEvent));
-		glTriangleTest();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLayer(m_ImGuiLayer);
@@ -71,10 +112,24 @@ namespace JEngine {
 	}
 
 	void Application::AppRun() {
+
+		glTriangleTest();
 		while (m_Running) {
-			glClear(GL_COLOR_BUFFER_BIT);
-			glViewport(0,0,m_Window->GetWidth(), m_Window->GetHeight());
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
+
+			//glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::Clear();
+			//glViewport(0,0,m_Window->GetWidth(), m_Window->GetHeight());
+			RenderCommand::SetViewpot(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
+			//m_sq_VertexArray->Bind();
+			//glDrawElements(GL_TRIANGLES, m_sq_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+			Renderer::BeginScene();
+			Renderer::Submit(m_sq_VertexArray);
+			Renderer::Submit(m_tri_VertexArray);
+			Renderer::EndScene();
+			//m_tri_VertexArray->Bind();
+			//glDrawElements(GL_TRIANGLES, m_tri_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+			
+			
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 

@@ -3,7 +3,7 @@
 #include "JEngine/Window.h"
 
 #include "GLFW/glfw3.h"
-#include "JEngine/Renderer/OpenGLContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace JEngine {
 	class WindowsWindow : public Window {

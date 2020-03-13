@@ -9,6 +9,10 @@
 
 #include "JEngine/ImGui/ImGuiLayer.h"
 
+#include "Renderer/Renderer.h"
+#include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
+
 namespace JEngine {
 	class JE_API Application
 	{
@@ -28,12 +32,17 @@ namespace JEngine {
 		inline static Application& Get() { return *s_Instance; }
 	
 	private:
-		LayerStack m_LayerStack;
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool m_Running = true;
+		
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
+		LayerStack m_LayerStack;
+	
+	private:
+		std::shared_ptr<VertexArray> m_tri_VertexArray;
 
+		std::shared_ptr<VertexArray> m_sq_VertexArray;
 	private:
 		static Application* s_Instance;
 	};
