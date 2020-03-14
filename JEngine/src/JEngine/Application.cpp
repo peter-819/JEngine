@@ -31,7 +31,8 @@ namespace JEngine {
 
 
 	Application::Application(){
-		//Renderer::SetAPI(RenderAPI::OpenGL);
+		ts = TimeStep::Create();
+		ts->Init();
 
 		JE_CORE_ASSERT(!s_Instance, "Already have a application");
 		s_Instance = this;
@@ -44,7 +45,6 @@ namespace JEngine {
 	}
 
 	void Application::OnEvent(Event& e) {
-		JE_CORE_INFO("{0}", e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(JE_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(JE_BIND_EVENT_FN(Application::OnWindowResize));
@@ -78,9 +78,9 @@ namespace JEngine {
 
 	void Application::AppRun() {
 		while (m_Running) {
-			
+			ts->GetNewFrame();
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(ts->GetDeltaTime());
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -88,7 +88,6 @@ namespace JEngine {
 			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();
-
 		}
 	}
 

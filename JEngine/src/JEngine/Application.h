@@ -13,6 +13,8 @@
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
 
+#include "Core/TimeStep.h"
+
 namespace JEngine {
 	class JE_API Application
 	{
@@ -40,7 +42,8 @@ namespace JEngine {
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 	
-	
+	private:
+		TimeStep *ts;
 	private:
 		static Application* s_Instance;
 	};

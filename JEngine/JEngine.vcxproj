@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="src\JEngine.h" />
     <ClInclude Include="src\JEngine\Application.h" />
+    <ClInclude Include="src\JEngine\Core\TimeStep.h" />
     <ClInclude Include="src\JEngine\EntryPoint.h" />
     <ClInclude Include="src\JEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\JEngine\Events\Event.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\detail\_fixes.hpp" />
@@ -565,7 +567,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

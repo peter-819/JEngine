@@ -9,8 +9,7 @@ public:
 		glTriangleTest();
 	}
 
-	void OnUpdate() override {
-		
+	void OnUpdate(float dt) override {
 		JEngine::RenderCommand::Clear();
 		JEngine::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1.0f });
 
@@ -27,34 +26,6 @@ public:
 	}
 
 	void glTriangleTest() {
-		
-		/*std::string vertshader = R"(
-		#version 430
-		
-		in layout(location = 0) vec2 position;
-
-		uniform vec3 InColor;
-
-		out vec3 theColor;
-
-		void main() {
-			vec4 v = vec4(position.x, position.y, 0.0, 1.0);
-			gl_Position = v;
-			theColor = InColor;
-		})";
-
-		std::string fragshader = R"(
-		#version 430
-
-		in vec3 theColor;
-		
-		out vec4 daColor;
-
-		void main(){
-			daColor = vec4(theColor,1.0);	
-		}
-		
-		)";*/
 
 		std::string vertshader = R"(
 			#version 430
@@ -105,31 +76,11 @@ public:
 		m_cube_VertexArray.reset(JEngine::VertexArray::Create());
 		m_cube_VertexArray->AddVertexBuffer(vertexbuffer);
 		m_cube_VertexArray->AddIndexBuffer(indexbuffer);
-
-		/*float sqverts[] = {
-			-0.7f, -0.7f,
-			-0.7f, +0.7f,
-			+0.7f, +0.7f,
-			+0.7f, -0.7f,
-		};
-		uint32_t sqind[] = { 0,1,2,2,3,0 };
-
-		vertexbuffer.reset(JEngine::VertexBuffer::Create(sqverts, sizeof sqverts));
-		vertexbuffer->SetLayout({
-				{ "Postion",JEngine::ShaderDataType::Float2 }
-			});
-
-		indexbuffer.reset(JEngine::IndexBuffer::Create(sqind, 6));
-
-		m_sq_VertexArray.reset(JEngine::VertexArray::Create());
-		m_sq_VertexArray->AddVertexBuffer(vertexbuffer);
-		m_sq_VertexArray->AddIndexBuffer(indexbuffer);*/
 		cube.CleanUp();
 	}
 
 private:
 		std::shared_ptr<JEngine::VertexArray> m_cube_VertexArray;
-		//std::shared_ptr<JEngine::VertexArray> m_sq_VertexArray;
 		std::shared_ptr<JEngine::Shader> m_cube_shader;
 };
 

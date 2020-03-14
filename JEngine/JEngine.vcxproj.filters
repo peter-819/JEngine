@@ -1241,6 +1241,8 @@
     <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h" />
     <ClInclude Include="src\JEngine\Shape\ShapeData.h" />
     <ClInclude Include="src\JEngine\Shape\ShapeGenerator.h" />
+    <ClInclude Include="src\JEngine\Core\TimeStep.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -1298,5 +1300,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp" />
     <ClCompile Include="src\JEngine\Shape\ShapeGenerator.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp" />
+    <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
   </ItemGroup>
 </Project>

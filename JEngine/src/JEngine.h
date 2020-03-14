@@ -28,5 +28,7 @@
 #include "JEngine/Shape/ShapeData.h"
 #include "JEngine/Shape/ShapeGenerator.h"
 
+#include "JEngine/Core/TimeStep.h"
+
 //-----------Client Side-------------//
 #include "JEngine/EntryPoint.h"
