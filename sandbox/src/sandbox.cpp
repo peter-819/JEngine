@@ -10,19 +10,20 @@ public:
 	}
 
 	void OnUpdate(float dt) override {
+		m_CameraController.OnUpdate(dt);
+
 		JEngine::RenderCommand::Clear();
 		JEngine::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1.0f });
 
-		JEngine::ProjectiveCamera camera;
-		camera.SetProjection(60.0f, 1200.0f / 720.0f, 0.1f, 20.0f);
-		JEngine::Renderer::BeginScene(camera);
+		JEngine::Renderer::BeginScene(m_CameraController.GetCamera());
 		//JEngine::Renderer::Submit(m_sq_VertexArray);
 		JEngine::Renderer::Submit(m_cube_shader,m_cube_VertexArray);
 		JEngine::Renderer::EndScene();
 	}
 
 	void OnEvent(JEngine::Event& event) override {
-
+		//JE_CLIENT_TRACE("{0}", event.ToString());
+		m_CameraController.OnEvent(event);
 	}
 
 	void glTriangleTest() {
@@ -82,6 +83,7 @@ public:
 private:
 		std::shared_ptr<JEngine::VertexArray> m_cube_VertexArray;
 		std::shared_ptr<JEngine::Shader> m_cube_shader;
+		JEngine::ProjectiveCameraController m_CameraController;
 };
 
 class sandbox : public JEngine::Application {

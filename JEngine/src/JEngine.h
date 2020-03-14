@@ -24,6 +24,7 @@
 #include "JEngine/Renderer/VertexArray.h"
 #include "JEngine/Renderer/Shader.h"
 #include "JEngine/Renderer/ProjectiveCamera.h"
+#include "JEngine/Renderer/ProjectiveCameraController.h"
 
 #include "JEngine/Shape/ShapeData.h"
 #include "JEngine/Shape/ShapeGenerator.h"

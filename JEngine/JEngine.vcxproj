@@ -157,6 +157,7 @@
     <ClInclude Include="src\JEngine\Renderer\BufferLayout.h" />
     <ClInclude Include="src\JEngine\Renderer\GraphicContext.h" />
     <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h" />
+    <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h" />
     <ClInclude Include="src\JEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\JEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\JEngine\Renderer\RendererAPI.h" />
@@ -554,6 +555,7 @@
     <ClCompile Include="src\JEngine\Log.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp" />
+    <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp" />
     <ClCompile Include="src\JEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Shader.cpp" />
