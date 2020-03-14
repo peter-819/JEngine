@@ -2,6 +2,7 @@
 #include "JEpch.h"
 
 #include "JEngine/Renderer/Buffer.h"
+#include "JEngine/Shape/ShapeData.h"
 
 namespace JEngine {
 
@@ -9,6 +10,7 @@ namespace JEngine {
 	public:
 
 		OpenGLVertexBuffer(float* verices, uint32_t size);
+		OpenGLVertexBuffer(const ShapeData& shapedata);
 
 		virtual void Bind() const override;
 		virtual void UnBind() const override;
@@ -25,6 +27,7 @@ namespace JEngine {
 	public:
 
 		OpenGLIndexBuffer(uint32_t* index, uint32_t count);
+		OpenGLIndexBuffer(const ShapeData& shapedata);
 
 		virtual void Bind() const override;
 		virtual void UnBind() const override;

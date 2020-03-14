@@ -23,6 +23,22 @@ namespace JEngine {
 		return nullptr;
 	}
 
+	VertexBuffer* VertexBuffer::Create(const ShapeData& shapedata) {
+
+		RendererAPI::API a = Renderer::GetAPI();
+		switch (a) {
+
+		case RendererAPI::API::None:
+			JE_CORE_ASSERT(false, "Render API NONE");
+			return nullptr;
+
+		case RendererAPI::API::OpenGL:
+			return new OpenGLVertexBuffer(shapedata);
+		}
+
+		return nullptr;
+	}
+
 	IndexBuffer* IndexBuffer::Create(uint32_t* index, uint32_t count) {
 		RendererAPI::API a = Renderer::GetAPI();
 		switch (a) {
@@ -37,4 +53,20 @@ namespace JEngine {
 
 		return nullptr;
 	}
+
+	IndexBuffer* IndexBuffer::Create(const ShapeData& shapedata) {
+		RendererAPI::API a = Renderer::GetAPI();
+		switch (a) {
+
+		case RendererAPI::API::None:
+			JE_CORE_ASSERT(false, "Render API NONE");
+			return nullptr;
+
+		case RendererAPI::API::OpenGL:
+			return new OpenGLIndexBuffer(shapedata);
+		}
+
+		return nullptr;
+	}
+
 }

@@ -33,16 +33,14 @@ namespace JEngine {
 	
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 		bool m_Running = true;
 		
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 	
-	private:
-		std::shared_ptr<VertexArray> m_tri_VertexArray;
-
-		std::shared_ptr<VertexArray> m_sq_VertexArray;
+	
 	private:
 		static Application* s_Instance;
 	};

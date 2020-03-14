@@ -1236,6 +1236,11 @@
     <ClInclude Include="vendor\glm\vector_relational.hpp">
       <Filter>vendor\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h" />
+    <ClInclude Include="src\JEngine\Shape\ShapeData.h" />
+    <ClInclude Include="src\JEngine\Shape\ShapeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -1289,5 +1294,9 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp" />
+    <ClCompile Include="src\JEngine\Shape\ShapeGenerator.cpp" />
   </ItemGroup>
 </Project>

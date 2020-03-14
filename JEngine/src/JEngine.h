@@ -15,6 +15,18 @@
 #include "JEngine/keycode.h"
 #include "JEngine/ImGui/ImGuiLayer.h"
 
+#include "JEngine/Renderer/Buffer.h"
+#include "JEngine/Renderer/BufferLayout.h"
+#include "JEngine/Renderer/GraphicContext.h"
+#include "JEngine/Renderer/RenderCommand.h"
+#include "JEngine/Renderer/Renderer.h"
+#include "JEngine/Renderer/RendererAPI.h"
+#include "JEngine/Renderer/VertexArray.h"
+#include "JEngine/Renderer/Shader.h"
+#include "JEngine/Renderer/ProjectiveCamera.h"
+
+#include "JEngine/Shape/ShapeData.h"
+#include "JEngine/Shape/ShapeGenerator.h"
 
 //-----------Client Side-------------//
 #include "JEngine/EntryPoint.h"

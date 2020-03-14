@@ -13,6 +13,12 @@ namespace JEngine {
 		glBindBuffer(GL_ARRAY_BUFFER, m_BufferID);
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
 	}
+	
+	OpenGLVertexBuffer::OpenGLVertexBuffer(const ShapeData& shapedata) {
+		glCreateBuffers(1, &m_BufferID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_BufferID);
+		glBufferData(GL_ARRAY_BUFFER, shapedata.VerticesSize(), shapedata.Vertices, GL_STATIC_DRAW);
+	}
 
 	void OpenGLVertexBuffer::Bind() const {
 		glBindBuffer(GL_ARRAY_BUFFER, m_BufferID);
@@ -30,6 +36,13 @@ namespace JEngine {
 		glCreateBuffers(1, &m_BufferID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), index, GL_STATIC_DRAW);
+	}
+
+	OpenGLIndexBuffer::OpenGLIndexBuffer(const ShapeData& shapedata)
+		:m_Count(shapedata.NumIndices) {
+		glCreateBuffers(1, &m_BufferID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, shapedata.IndicesSize(), shapedata.Indices, GL_STATIC_DRAW);
 	}
 
 	void OpenGLIndexBuffer::Bind() const {
