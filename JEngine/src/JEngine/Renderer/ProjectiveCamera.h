@@ -15,7 +15,8 @@ namespace JEngine {
 		const glm::mat4& GetMatrix() const {
 			glm::mat4 Pmat = glm::perspective(glm::radians(m_ViewAngle), m_Aspect, m_Znear, m_Zfar);
 			glm::mat4 Cmat = glm::lookAt(m_Position, m_Position + m_ViewDirection, m_UP);
-			return Pmat * Cmat;
+			glm::mat4 res = Pmat * Cmat;
+			return res;
 		}
 		const glm::mat4& GetCameraMatrix() const { 
 			return glm::lookAt(m_Position, m_Position + m_ViewDirection, m_UP);

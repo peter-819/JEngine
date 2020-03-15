@@ -25,6 +25,7 @@ namespace JEngine {
 
 	OpenGLVertexArray::OpenGLVertexArray() {
 		glCreateVertexArrays(1, &m_VertexArrayID);
+		glBindVertexArray(m_VertexArrayID);				//TODO: My Idea
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray() {
@@ -39,7 +40,7 @@ namespace JEngine {
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer>& vertexbuffer) {
+	void OpenGLVertexArray::AddVertexBuffer(Ref<VertexBuffer>& vertexbuffer) {
 		JE_CORE_ASSERT(vertexbuffer->GetLayout().GetBufferLayout().size(), "Can't Add VertexBuffer, It's Empty !!");
 		glBindVertexArray(m_VertexArrayID);
 		vertexbuffer->Bind();
@@ -61,7 +62,7 @@ namespace JEngine {
 		m_VertexBuffers.push_back(vertexbuffer);
 	}
 
-	void OpenGLVertexArray::AddIndexBuffer(std::shared_ptr<IndexBuffer>& indexbuffer) {
+	void OpenGLVertexArray::AddIndexBuffer(Ref<IndexBuffer>& indexbuffer) {
 		glBindVertexArray(m_VertexArrayID);
 		indexbuffer->Bind();
 

@@ -1,3 +1,5 @@
+#include <memory>
+
 #ifdef JE_PLATFORM_WINDOWS
 	#ifdef JE_EXPORT_DLL
 		#ifdef JE_BUILD_DLL
@@ -25,3 +27,12 @@
 
 
 #define JE_BIND_EVENT_FN(x) std::bind(&x,this,std::placeholders::_1)
+
+namespace JEngine {
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+}

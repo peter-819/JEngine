@@ -16,7 +16,7 @@ namespace JEngine {
 		inline static void Clear() {
 			m_Api->Clear();
 		}
-		inline static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexarray) {
+		inline static void DrawIndexed(const Ref<VertexArray>& vertexarray) {
 			m_Api->DrawIndexed(vertexarray);
 		}
 		

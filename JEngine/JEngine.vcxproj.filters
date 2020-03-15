@@ -1244,6 +1244,7 @@
     <ClInclude Include="src\JEngine\Core\TimeStep.h" />
     <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
     <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h" />
+    <ClInclude Include="src\JEngine\Renderer\Light.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -1304,5 +1305,6 @@
     <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp" />
     <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
     <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp" />
+    <ClCompile Include="src\JEngine\Renderer\Light.cpp" />
   </ItemGroup>
 </Project>

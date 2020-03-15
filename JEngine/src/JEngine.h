@@ -25,6 +25,7 @@
 #include "JEngine/Renderer/Shader.h"
 #include "JEngine/Renderer/ProjectiveCamera.h"
 #include "JEngine/Renderer/ProjectiveCameraController.h"
+#include "JEngine/Renderer/Light.h"
 
 #include "JEngine/Shape/ShapeData.h"
 #include "JEngine/Shape/ShapeGenerator.h"

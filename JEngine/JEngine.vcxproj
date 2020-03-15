@@ -152,6 +152,7 @@
     <ClInclude Include="src\JEngine\Input.h" />
     <ClInclude Include="src\JEngine\Layer.h" />
     <ClInclude Include="src\JEngine\LayerStack.h" />
+    <ClInclude Include="src\JEngine\Renderer\Light.h" />
     <ClInclude Include="src\JEngine\Log.h" />
     <ClInclude Include="src\JEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\JEngine\Renderer\BufferLayout.h" />
@@ -552,6 +553,7 @@
     <ClCompile Include="src\JEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\JEngine\Layer.cpp" />
     <ClCompile Include="src\JEngine\LayerStack.cpp" />
+    <ClCompile Include="src\JEngine\Renderer\Light.cpp" />
     <ClCompile Include="src\JEngine\Log.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp" />

@@ -18,4 +18,17 @@ namespace JEngine{
 		}
 		return nullptr;
 	}
+	Shader* Shader::Create(const std::string& filepath) {
+		RendererAPI::API api = Renderer::GetAPI();
+
+		switch (api) {
+		case RendererAPI::API::None:
+			JE_CORE_ASSERT(false, "Render API NONE");
+			return nullptr;
+
+		case RendererAPI::API::OpenGL:
+			return new OpenGLShader(filepath);
+		}
+		return nullptr;
+	}
 }

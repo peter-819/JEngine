@@ -13,6 +13,7 @@
 #include <unordered_set>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 #include <JEngine/Log.h>
 

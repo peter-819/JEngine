@@ -1,12 +1,22 @@
 #include <JEngine.h>
 #include <cstdio>
 
+#include "gtx/transform.hpp"
+#include "glm.hpp"
+
 class ExampleLayer : public JEngine::Layer {
 public:
 	ExampleLayer() :Layer("Example"){}
 
 	void OnAttach() override {
-		glTriangleTest();
+
+		m_shader.reset(JEngine::Shader::Create(".\\asset\\ColorShader.glsl"));
+		JE_CLIENT_TRACE("{0}", m_shader->GetName());
+
+		m_Light.setLight({ -10.0f, 3.0f, 6.0f }, 0.2f, 0.6f, 6.0f, 20.0f);
+		//m_Light.BindShader(m_shader);
+		DrawCube();
+		DrawPlane();
 	}
 
 	void OnUpdate(float dt) override {
@@ -15,53 +25,21 @@ public:
 		JEngine::RenderCommand::Clear();
 		JEngine::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1.0f });
 
-		JEngine::Renderer::BeginScene(m_CameraController.GetCamera());
-		//JEngine::Renderer::Submit(m_sq_VertexArray);
-		JEngine::Renderer::Submit(m_cube_shader,m_cube_VertexArray);
+		JEngine::Renderer::BeginScene(m_CameraController.GetCamera(), m_Light);
+		JEngine::Renderer::Submit(m_shader,m_plane_VertexArray,glm::mat4(1.0f));
+		JEngine::Renderer::Submit(m_shader, m_cube_VertexArray, glm::translate(glm::vec3(0.0f, 1.5f, 0.0f)));
 		JEngine::Renderer::EndScene();
 	}
 
 	void OnEvent(JEngine::Event& event) override {
-		//JE_CLIENT_TRACE("{0}", event.ToString());
 		m_CameraController.OnEvent(event);
 	}
 
-	void glTriangleTest() {
+	void DrawCube() {
+		m_cube_VertexArray.reset(JEngine::VertexArray::Create());
 
-		std::string vertshader = R"(
-			#version 430
-			
-			in layout(location=0) vec3 position;
-			in layout(location=1) vec3 color;
-			in layout(location=2) vec3 normal;
-
-			uniform mat4 fullMatrix;
-			
-			out vec3 theColor;
-			
-			void main(){
-				vec4 v = vec4(position,1.0);
-				gl_Position =  fullMatrix * v;
-				theColor = color;
-			}
-		)";
-
-		std::string fragshader = R"(
-			#version 430
-			
-			in vec3 theColor;
-			
-			out vec4 daColor;
-			
-			void main(){
-				daColor = vec4(theColor,1.0);	
-			}
-		)";
-
-		m_cube_shader.reset(JEngine::Shader::Create(vertshader, fragshader));
-		
-		std::shared_ptr<JEngine::VertexBuffer> vertexbuffer;
-		std::shared_ptr<JEngine::IndexBuffer> indexbuffer;
+		JEngine::Ref<JEngine::VertexBuffer> vertexbuffer;
+		JEngine::Ref<JEngine::IndexBuffer> indexbuffer;
 
 		JEngine::ShapeData cube = JEngine::ShapeGenerator::makeCube();
 
@@ -74,16 +52,38 @@ public:
 
 		indexbuffer.reset(JEngine::IndexBuffer::Create(cube));
 
-		m_cube_VertexArray.reset(JEngine::VertexArray::Create());
 		m_cube_VertexArray->AddVertexBuffer(vertexbuffer);
 		m_cube_VertexArray->AddIndexBuffer(indexbuffer);
 		cube.CleanUp();
 	}
 
+	void DrawPlane() {
+		m_plane_VertexArray.reset(JEngine::VertexArray::Create());
+
+		JEngine::Ref<JEngine::VertexBuffer> vertexbuffer;
+		JEngine::Ref<JEngine::IndexBuffer> indexbuffer;
+
+		JEngine::ShapeData plane = JEngine::ShapeGenerator::makePlane(40);
+
+		vertexbuffer.reset(JEngine::VertexBuffer::Create(plane));
+		vertexbuffer->SetLayout({
+				{"Position", JEngine::ShaderDataType::Float3},
+				{"Color", JEngine::ShaderDataType::Float3},
+				{"Normal", JEngine::ShaderDataType::Float3}
+			});
+
+		indexbuffer.reset(JEngine::IndexBuffer::Create(plane));
+
+		m_plane_VertexArray->AddVertexBuffer(vertexbuffer);
+		m_plane_VertexArray->AddIndexBuffer(indexbuffer);
+		plane.CleanUp();
+	}
 private:
-		std::shared_ptr<JEngine::VertexArray> m_cube_VertexArray;
-		std::shared_ptr<JEngine::Shader> m_cube_shader;
-		JEngine::ProjectiveCameraController m_CameraController;
+	JEngine::Ref<JEngine::VertexArray> m_plane_VertexArray;
+	JEngine::Ref<JEngine::VertexArray> m_cube_VertexArray;
+	JEngine::Ref<JEngine::Shader> m_shader;
+	JEngine::ProjectiveCameraController m_CameraController;
+	JEngine::Light m_Light;
 };
 
 class sandbox : public JEngine::Application {
