@@ -6,8 +6,9 @@
 namespace JEngine {
 	class OpenGLShader : public Shader {
 	public:
-		OpenGLShader(const std::string& vertshader, const std::string& fragshader);
+		OpenGLShader(const std::string& name, const std::string& vertshader, const std::string& fragshader);
 		OpenGLShader(const std::string& filepath);
+		OpenGLShader(const std::string& name, const std::string& filepath);
 
 		virtual void Bind() const override;
 		virtual void UnBind() const override;

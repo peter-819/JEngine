@@ -57,6 +57,9 @@ namespace JEngine {
 	}
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& ShaderSource) {
+		std::array<GLuint, 4> ShaderIDs;
+		int Index = 0;
+		
 		ProgramID = glCreateProgram();
 		for (auto& kv : ShaderSource) {
 			GLuint ShaderID = glCreateShader(kv.first);
@@ -69,8 +72,12 @@ namespace JEngine {
 			glAttachShader(ProgramID, ShaderID);
 			glLinkProgram(ProgramID);
 			JE_CORE_ASSERT(checkProgramStatus(ProgramID), "Can't Attach shader");
+			
+			ShaderIDs[Index++] = ShaderID;
 			glDeleteShader(ShaderID);
 		}
+		for (auto id : ShaderIDs)
+			glDetachShader(ProgramID, id);
 	}
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source) {
@@ -95,11 +102,13 @@ namespace JEngine {
 		return shadersource;
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertshader,const std::string& fragshader) {
+	OpenGLShader::OpenGLShader(const std::string& name,const std::string& vertshader,const std::string& fragshader) {
 		std::unordered_map<GLenum, std::string> ShaderSource;
 		ShaderSource[GL_VERTEX_SHADER] = vertshader;
 		ShaderSource[GL_FRAGMENT_SHADER] = fragshader;
 		Compile(ShaderSource);
+
+		m_Name = name;
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& filepath) {
@@ -107,11 +116,22 @@ namespace JEngine {
 		auto shadersources = PreProcess(source);
 		Compile(shadersources);
 
-		auto lastSlash = filepath.find_last_of("/\\");
+		/*auto lastSlash = filepath.find_last_of("/\\");
 		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
 		auto lastDot = filepath.rfind('.');
 		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
-		m_Name = filepath.substr(lastSlash, count);
+		m_Name = filepath.substr(lastSlash, count);*/
+
+		std::filesystem::path path = filepath;
+		m_Name = path.stem().string();
+	}
+
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& filepath) {
+		std::string source = ReadSource(filepath);
+		auto shadersources = PreProcess(source);
+		Compile(shadersources);
+
+		m_Name = name;
 	}
 
 	void OpenGLShader::Bind() const {

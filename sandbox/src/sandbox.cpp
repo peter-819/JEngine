@@ -10,8 +10,7 @@ public:
 
 	void OnAttach() override {
 
-		m_shader.reset(JEngine::Shader::Create(".\\asset\\ColorShader.glsl"));
-		JE_CLIENT_TRACE("{0}", m_shader->GetName());
+		m_shaders.Load(".\\asset\\ColorShader.glsl");
 
 		m_Light.setLight({ -10.0f, 3.0f, 6.0f }, 0.2f, 0.6f, 6.0f, 20.0f);
 		//m_Light.BindShader(m_shader);
@@ -26,8 +25,8 @@ public:
 		JEngine::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1.0f });
 
 		JEngine::Renderer::BeginScene(m_CameraController.GetCamera(), m_Light);
-		JEngine::Renderer::Submit(m_shader,m_plane_VertexArray,glm::mat4(1.0f));
-		JEngine::Renderer::Submit(m_shader, m_cube_VertexArray, glm::translate(glm::vec3(0.0f, 1.5f, 0.0f)));
+		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"),m_plane_VertexArray,glm::mat4(1.0f));
+		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"), m_cube_VertexArray, glm::translate(glm::vec3(0.0f, 1.5f, 0.0f)));
 		JEngine::Renderer::EndScene();
 	}
 
@@ -81,7 +80,7 @@ public:
 private:
 	JEngine::Ref<JEngine::VertexArray> m_plane_VertexArray;
 	JEngine::Ref<JEngine::VertexArray> m_cube_VertexArray;
-	JEngine::Ref<JEngine::Shader> m_shader;
+	JEngine::ShaderLibrary m_shaders;
 	JEngine::ProjectiveCameraController m_CameraController;
 	JEngine::Light m_Light;
 };
