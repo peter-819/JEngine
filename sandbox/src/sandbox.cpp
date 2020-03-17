@@ -12,9 +12,9 @@ public:
 
 		m_shaders.Load(".\\asset\\ColorShader.glsl");
 
-		m_Light.setLight({ -10.0f, 3.0f, 6.0f }, 0.2f, 0.6f, 6.0f, 20.0f);
+		m_Light.setLight({ -5.0f, 4.0f, 5.0f }, 0.2f, 0.6f, 6.0f, 20.0f);
 		//m_Light.BindShader(m_shader);
-		DrawCube();
+		DrawShape();
 		DrawPlane();
 	}
 
@@ -26,7 +26,10 @@ public:
 
 		JEngine::Renderer::BeginScene(m_CameraController.GetCamera(), m_Light);
 		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"),m_plane_VertexArray,glm::mat4(1.0f));
-		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"), m_cube_VertexArray, glm::translate(glm::vec3(0.0f, 1.5f, 0.0f)));
+
+		glm::mat4 transform = glm::translate(glm::vec3(0.0f, 0.5f, 0.0f)) * glm::rotate(glm::radians(-90.0f),glm::vec3(1.0f,0.0f,0.0f));
+
+		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"), m_shape_VertexArray, transform);
 		JEngine::Renderer::EndScene();
 	}
 
@@ -34,26 +37,26 @@ public:
 		m_CameraController.OnEvent(event);
 	}
 
-	void DrawCube() {
-		m_cube_VertexArray.reset(JEngine::VertexArray::Create());
+	void DrawShape() {
+		m_shape_VertexArray.reset(JEngine::VertexArray::Create());
 
 		JEngine::Ref<JEngine::VertexBuffer> vertexbuffer;
 		JEngine::Ref<JEngine::IndexBuffer> indexbuffer;
 
-		JEngine::ShapeData cube = JEngine::ShapeGenerator::makeCube();
+		JEngine::ShapeData shape = JEngine::ShapeGenerator::makeTeapot(1);
 
-		vertexbuffer.reset(JEngine::VertexBuffer::Create(cube));
+		vertexbuffer.reset(JEngine::VertexBuffer::Create(shape));
 		vertexbuffer->SetLayout({
 				{"Position", JEngine::ShaderDataType::Float3},
 				{"Color", JEngine::ShaderDataType::Float3},
 				{"Normal", JEngine::ShaderDataType::Float3}
 			});
 
-		indexbuffer.reset(JEngine::IndexBuffer::Create(cube));
+		indexbuffer.reset(JEngine::IndexBuffer::Create(shape));
 
-		m_cube_VertexArray->AddVertexBuffer(vertexbuffer);
-		m_cube_VertexArray->AddIndexBuffer(indexbuffer);
-		cube.CleanUp();
+		m_shape_VertexArray->AddVertexBuffer(vertexbuffer);
+		m_shape_VertexArray->AddIndexBuffer(indexbuffer);
+		shape.CleanUp();
 	}
 
 	void DrawPlane() {
@@ -79,7 +82,7 @@ public:
 	}
 private:
 	JEngine::Ref<JEngine::VertexArray> m_plane_VertexArray;
-	JEngine::Ref<JEngine::VertexArray> m_cube_VertexArray;
+	JEngine::Ref<JEngine::VertexArray> m_shape_VertexArray;
 	JEngine::ShaderLibrary m_shaders;
 	JEngine::ProjectiveCameraController m_CameraController;
 	JEngine::Light m_Light;

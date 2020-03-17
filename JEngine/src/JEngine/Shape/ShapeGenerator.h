@@ -11,5 +11,6 @@ namespace JEngine {
 		static ShapeData makeTriangle();
 		static ShapeData makeCube();
 		static ShapeData makePlane(int dimension);
+		static ShapeData makeTeapot(int grid);
 	};
 }

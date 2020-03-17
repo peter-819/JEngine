@@ -21,5 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="asset\ColorShader.glsl" />
+    <None Include="asset\testShader.glsl" />
   </ItemGroup>
 </Project>

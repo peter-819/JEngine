@@ -11,7 +11,7 @@ uniform mat4 FullMatrix;
 out vec3 thePosition;
 out vec3 theNormal;
 
-out vec3 testColor;
+out vec3 theColor;
 
 void main()
 {
@@ -19,7 +19,7 @@ void main()
 	gl_Position = FullMatrix * v;
 	thePosition = vec3(TransformMatrix * v);
 	theNormal = normalize(vec3(TransformMatrix * vec4(normal,0)));
-	testColor = normal;
+	theColor = vertexColor;
 }
 
 #type fragment
@@ -30,7 +30,7 @@ out vec4 daColor;
 in vec3 thePosition;
 in vec3 theNormal;
 
-in vec3 testColor;
+in vec3 theColor;
 
 uniform vec3 CameraPosition;
 
@@ -63,8 +63,10 @@ void main()
 		specularLight = specularity;
 
 	float finalBrightness = AmbientLightScalar + brightness + specularity;
-	float f = clamp(finalBrightness,0,1);
-	daColor = vec4(f,f,f,1);
-	//vec3 test =  testColor;
+	//float f = clamp(finalBrightness,0,1);
+	//daColor = vec4(f,f,f,1);
+	vec3 f = vec3(finalBrightness);
+	vec3 test =  min(theColor.rgb * f,vec3(1.0));
+	daColor = vec4(test,1.0);
 	//daColor = vec4(test,1.0);
 }

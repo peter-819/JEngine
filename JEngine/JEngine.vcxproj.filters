@@ -1245,6 +1245,8 @@
     <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
     <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h" />
     <ClInclude Include="src\JEngine\Renderer\Light.h" />
+    <ClInclude Include="src\JEngine\Shape\asset\teapot.h" />
+    <ClInclude Include="src\JEngine\Shape\asset\teapotdata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -1306,5 +1308,6 @@
     <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
     <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Light.cpp" />
+    <ClCompile Include="src\JEngine\Shape\asset\teapot.cpp" />
   </ItemGroup>
 </Project>

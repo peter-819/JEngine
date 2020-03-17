@@ -164,6 +164,8 @@
     <ClInclude Include="src\JEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\JEngine\Renderer\Shader.h" />
     <ClInclude Include="src\JEngine\Renderer\VertexArray.h" />
+    <ClInclude Include="src\JEngine\Shape\asset\teapot.h" />
+    <ClInclude Include="src\JEngine\Shape\asset\teapotdata.h" />
     <ClInclude Include="src\JEngine\Shape\ShapeData.h" />
     <ClInclude Include="src\JEngine\Shape\ShapeGenerator.h" />
     <ClInclude Include="src\JEngine\Window.h" />
@@ -562,6 +564,7 @@
     <ClCompile Include="src\JEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\JEngine\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\JEngine\Shape\asset\teapot.cpp" />
     <ClCompile Include="src\JEngine\Shape\ShapeGenerator.cpp" />
     <ClCompile Include="src\JEpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

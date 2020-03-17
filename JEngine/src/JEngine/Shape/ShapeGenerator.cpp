@@ -1,6 +1,7 @@
 #include "JEpch.h"
 #include "ShapeGenerator.h"
 #include "ShapeData.h"
+#include "asset/teapot.h"
 
 namespace JEngine {
 #define NUM_ELEMENTS_OF(x) sizeof(x)/sizeof(*x)
@@ -161,5 +162,11 @@ namespace JEngine {
 		getPlaneVertices(dimension, plane.NumVertices, plane.Vertices);
 		getPlaneIndices(dimension, plane.NumIndices, plane.Indices);
 		return plane;
+	}
+
+	ShapeData ShapeGenerator::makeTeapot(int grid) {
+		ShapeData teapot;
+		Teapot::GetTeapot(teapot, grid);
+		return teapot;
 	}
 }
