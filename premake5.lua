@@ -111,7 +111,8 @@ project "sandbox"
 	{
 		"JEngine/vendor/spdlog-1.x/include",
 		"JEngine/src",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.JEimgui}"
 	}
 
 	links

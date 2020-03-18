@@ -169,4 +169,20 @@ namespace JEngine {
 		Teapot::GetTeapot(teapot, grid);
 		return teapot;
 	}
+
+	ShapeData ShapeGenerator::makeShape(Shape shape,int val) {
+		switch (shape) {
+		case Shape::None:
+			JE_CORE_ASSERT(false, "Invalid Shape!");
+		case Shape::Plane:
+			return makePlane(val);
+		case Shape::Cube:
+			return makeCube();
+		case Shape::Teapot:
+			return makeTeapot(val);
+		case Shape::Triangle:
+			return makeTriangle();
+		}
+		JE_CORE_ASSERT(false, "Invalid Shape!");
+	}
 }

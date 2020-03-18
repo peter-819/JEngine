@@ -34,6 +34,13 @@ namespace JEngine {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseMovedEvent>(JE_BIND_EVENT_FN(ProjectiveCameraController::OnMouseMoved));
 		dispatcher.Dispatch<MouseScrolledEvent>(JE_BIND_EVENT_FN(ProjectiveCameraController::OnMouseScrolled));
+		dispatcher.Dispatch<WindowResizeEvent>(JE_BIND_EVENT_FN(ProjectiveCameraController::OnWindowResize));
+	}
+
+	bool ProjectiveCameraController::OnWindowResize(WindowResizeEvent& e) {
+		int width = e.GetWidth(), height = e.GetHeight();
+		m_Camera.m_Aspect = (float)width / height;
+		return false;
 	}
 
 	bool ProjectiveCameraController::OnMouseMoved(MouseMovedEvent& e) {

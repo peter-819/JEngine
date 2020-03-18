@@ -7,6 +7,9 @@
     <Filter Include="src\JEngine">
       <UniqueIdentifier>{5CF043F6-C8A5-BCEB-519A-B6C2BD4EB3EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\JEngine\Core">
+      <UniqueIdentifier>{34AE4D08-20A7-6C5A-49D9-51DF35314C66}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\JEngine\Events">
       <UniqueIdentifier>{C01C9457-AC00-55AD-1561-4F0001643F2F}</UniqueIdentifier>
     </Filter>
@@ -15,6 +18,12 @@
     </Filter>
     <Filter Include="src\JEngine\Renderer">
       <UniqueIdentifier>{825B0984-6EEA-924D-1709-A7480377A3F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\JEngine\Shape">
+      <UniqueIdentifier>{9CDF2013-08F6-1EA9-516D-AACABDC2EF30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\JEngine\Shape\asset">
+      <UniqueIdentifier>{4BE94743-B720-90DA-C02A-F4FD2CE1B6D3}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -50,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="src\JEngine\Application.h">
       <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\TimeStep.h">
+      <Filter>src\JEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\JEngine\EntryPoint.h">
       <Filter>src\JEngine</Filter>
@@ -90,6 +102,15 @@
     <ClInclude Include="src\JEngine\Renderer\GraphicContext.h">
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Light.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\JEngine\Renderer\RenderCommand.h">
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
@@ -99,8 +120,23 @@
     <ClInclude Include="src\JEngine\Renderer\RendererAPI.h">
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Shader.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\JEngine\Renderer\VertexArray.h">
       <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Shape\ShapeData.h">
+      <Filter>src\JEngine\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Shape\ShapeGenerator.h">
+      <Filter>src\JEngine\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Shape\asset\teapot.h">
+      <Filter>src\JEngine\Shape\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Shape\asset\teapotdata.h">
+      <Filter>src\JEngine\Shape\asset</Filter>
     </ClInclude>
     <ClInclude Include="src\JEngine\Window.h">
       <Filter>src\JEngine</Filter>
@@ -123,10 +159,16 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
@@ -1236,21 +1278,13 @@
     <ClInclude Include="vendor\glm\vector_relational.hpp">
       <Filter>vendor\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\JEngine\Renderer\Shader.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h" />
-    <ClInclude Include="src\JEngine\Shape\ShapeData.h" />
-    <ClInclude Include="src\JEngine\Shape\ShapeGenerator.h" />
-    <ClInclude Include="src\JEngine\Core\TimeStep.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
-    <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h" />
-    <ClInclude Include="src\JEngine\Renderer\Light.h" />
-    <ClInclude Include="src\JEngine\Shape\asset\teapot.h" />
-    <ClInclude Include="src\JEngine\Shape\asset\teapotdata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
       <Filter>src\JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Core\TimeStep.cpp">
+      <Filter>src\JEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\JEngine\ImGui\ImGuiBuid.cpp">
       <Filter>src\JEngine\ImGui</Filter>
@@ -1270,14 +1304,32 @@
     <ClCompile Include="src\JEngine\Renderer\Buffer.cpp">
       <Filter>src\JEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Light.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\JEngine\Renderer\RenderCommand.cpp">
       <Filter>src\JEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\JEngine\Renderer\Renderer.cpp">
       <Filter>src\JEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Shader.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\JEngine\Renderer\VertexArray.cpp">
       <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Shape\ShapeGenerator.cpp">
+      <Filter>src\JEngine\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Shape\asset\teapot.cpp">
+      <Filter>src\JEngine\Shape\asset</Filter>
     </ClCompile>
     <ClCompile Include="src\JEpch.cpp">
       <Filter>src</Filter>
@@ -1291,23 +1343,20 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\JEngine\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp" />
-    <ClCompile Include="src\JEngine\Shape\ShapeGenerator.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp" />
-    <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
-    <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp" />
-    <ClCompile Include="src\JEngine\Renderer\Light.cpp" />
-    <ClCompile Include="src\JEngine\Shape\asset\teapot.cpp" />
   </ItemGroup>
 </Project>

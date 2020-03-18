@@ -25,8 +25,3 @@ namespace JEngine {
 		float m_Time;
 	};
 }
-//
-//WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-//AppTick, AppUpdate, AppRender,
-//KeyPressed, KeyReleased,
-//MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled

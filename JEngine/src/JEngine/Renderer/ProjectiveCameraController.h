@@ -2,7 +2,7 @@
 
 #include "ProjectiveCamera.h"
 #include "JEngine/Events/MouseEvent.h"
-
+#include "JEngine/Events/ApplicationEvent.h"
 namespace JEngine {
 	class ProjectiveCameraController {
 	public:
@@ -13,6 +13,7 @@ namespace JEngine {
 
 		bool OnMouseMoved(MouseMovedEvent& e);
 		bool OnMouseScrolled(MouseScrolledEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 		const ProjectiveCamera& GetCamera() const { return m_Camera; }
 	private:
 		ProjectiveCamera m_Camera;

@@ -49,7 +49,7 @@ namespace JEngine {
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 		// Setup Platform/Renderer bindings
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 410");
+		ImGui_ImplOpenGL3_Init("#version 450");
 	}
 
 	void ImGuiLayer::OnDetach() {
@@ -81,7 +81,7 @@ namespace JEngine {
 	}
 
 	void ImGuiLayer::OnImGuiRender() {
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		//static bool show = true;
+		//ImGui::ShowDemoWindow(&show);
 	}
 }

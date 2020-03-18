@@ -9,6 +9,6 @@ namespace JEngine {
 		m_ViewAngle = 60.0f;
 		m_Aspect = 1200.0f / 720.0f;
 		m_Znear = 0.1f;
-		m_Zfar = 50.0f;
+		m_Zfar = 100.0f;
 	}
 }
