@@ -168,6 +168,10 @@ namespace JEngine {
 		UpLoadUniformMat4(name, matrix);
 	}
 
+	void OpenGLShader::SetBool(const std::string& name,bool value){
+		UpLoadUniformBool(name, value);
+	}
+
 	//-------------------------------UPLOAD UNIFORM VALUE PART------------------------------------//
 	void OpenGLShader::UpLoadUniformFloat (const std::string& name, float value) {
 		GLuint location = glGetUniformLocation(ProgramID, name.c_str());
@@ -197,5 +201,10 @@ namespace JEngine {
 	void OpenGLShader::UpLoadUniformMat4(const std::string& name, const glm::mat4& matrix) {
 		GLint location = glGetUniformLocation(ProgramID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void OpenGLShader::UpLoadUniformBool(const std::string& name, bool value) {
+		GLuint location = glGetUniformLocation(ProgramID, name.c_str());
+		glUniform1i(location, value);
 	}
 }

@@ -17,13 +17,6 @@ namespace JEngine {
 	}
 
 	void Light::BindShader(Ref<Shader> shader) {
-	/*	shader->Bind();
 
-		shader->SetFloat3("LightPosition", LightPosition);
-		shader->SetFloat ("AmbientLightScalar", AmbientLightScalar);
-		shader->SetFloat ("DiffuseLightScalar", DiffuseLightScalar);
-		shader->SetFloat ("SpecularLightRadius", SpecularLightRadius);
-		shader->SetFloat ("SpecularLightPow", SpecularLightPow);
-*/
 	}
 }

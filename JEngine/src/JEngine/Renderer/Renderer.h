@@ -3,8 +3,8 @@
 #include "RendererAPI.h"
 #include "JEngine/Renderer/VertexArray.h"
 #include "Shader.h"
-#include "ProjectiveCamera.h"
-#include "Light.h"
+#include "Camera/ProjectiveCamera.h"
+#include "Light/Light.h"
 #include "glm.hpp"
 
 namespace JEngine {
@@ -14,6 +14,7 @@ namespace JEngine {
 			static RendererAPI::API GetAPI() { return m_API; }
 		
 			static void BeginScene(const ProjectiveCamera& camera,const Light& light);
+			static void BeginScene(const ProjectiveCamera& camera);
 			static void EndScene();
 
 			static void Submit(
@@ -26,15 +27,8 @@ namespace JEngine {
 		private:
 
 			struct SceneData {
-				glm::mat4 viewProjection;
-				glm::vec3 CameraPosition;
-				
-				glm::vec3 LightPosition;
-				float AmbientLightScalar;
-				float DiffuseLightScalar;
-				float SpecularLightRadius;
-				float SpecularLightPow;
-
+				ProjectiveCamera camera;
+				std::vector<Light> lights;
 			};
 			
 			static Scope<SceneData> m_SceneData;

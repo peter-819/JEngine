@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JEpch.h"
-#include "JEngine/core.h"
+#include "JEngine/Core/core.h"
 
 
 namespace JEngine {

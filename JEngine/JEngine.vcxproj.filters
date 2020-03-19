@@ -57,14 +57,8 @@
     <ClInclude Include="src\JEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\JEngine\Application.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
     <ClInclude Include="src\JEngine\Core\TimeStep.h">
       <Filter>src\JEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\EntryPoint.h">
-      <Filter>src\JEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\JEngine\Events\ApplicationEvent.h">
       <Filter>src\JEngine\Events</Filter>
@@ -81,18 +75,6 @@
     <ClInclude Include="src\JEngine\ImGui\ImGuiLayer.h">
       <Filter>src\JEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\JEngine\Input.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Layer.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\LayerStack.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Log.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
     <ClInclude Include="src\JEngine\Renderer\Buffer.h">
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
@@ -100,15 +82,6 @@
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\JEngine\Renderer\GraphicContext.h">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Renderer\Light.h">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Renderer\ProjectiveCamera.h">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Renderer\ProjectiveCameraController.h">
       <Filter>src\JEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\JEngine\Renderer\RenderCommand.h">
@@ -137,15 +110,6 @@
     </ClInclude>
     <ClInclude Include="src\JEngine\Shape\asset\teapotdata.h">
       <Filter>src\JEngine\Shape\asset</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\Window.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\core.h">
-      <Filter>src\JEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\JEngine\keycode.h">
-      <Filter>src\JEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\JEpch.h">
       <Filter>src</Filter>
@@ -1278,11 +1242,44 @@
     <ClInclude Include="vendor\glm\vector_relational.hpp">
       <Filter>vendor\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Light\Light.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Camera\ProjectiveCamera.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Renderer\Camera\ProjectiveCameraController.h">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Events\keycode.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\Window.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\core.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\Input.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\Layer.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\LayerStack.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Core\Log.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\Application.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JEngine\EntryPoint.h">
+      <Filter>src\JEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\JEngine\Application.cpp">
-      <Filter>src\JEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\JEngine\Core\TimeStep.cpp">
       <Filter>src\JEngine\Core</Filter>
     </ClCompile>
@@ -1292,25 +1289,7 @@
     <ClCompile Include="src\JEngine\ImGui\ImGuiLayer.cpp">
       <Filter>src\JEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\JEngine\Layer.cpp">
-      <Filter>src\JEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JEngine\LayerStack.cpp">
-      <Filter>src\JEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JEngine\Log.cpp">
-      <Filter>src\JEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\JEngine\Renderer\Buffer.cpp">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JEngine\Renderer\Light.cpp">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JEngine\Renderer\ProjectiveCamera.cpp">
-      <Filter>src\JEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JEngine\Renderer\ProjectiveCameraController.cpp">
       <Filter>src\JEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\JEngine\Renderer\RenderCommand.cpp">
@@ -1357,6 +1336,27 @@
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Light\Light.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Camera\ProjectiveCamera.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Renderer\Camera\ProjectiveCameraController.cpp">
+      <Filter>src\JEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Core\Layer.cpp">
+      <Filter>src\JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Core\LayerStack.cpp">
+      <Filter>src\JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Core\Log.cpp">
+      <Filter>src\JEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JEngine\Application.cpp">
+      <Filter>src\JEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

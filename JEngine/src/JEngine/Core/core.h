@@ -28,6 +28,8 @@
 
 #define JE_BIND_EVENT_FN(x) std::bind(&x,this,std::placeholders::_1)
 
+#define JE_LIGHT_MAXNUM 100
+
 namespace JEngine {
 	template<typename T>
 	using Ref = std::shared_ptr<T>;

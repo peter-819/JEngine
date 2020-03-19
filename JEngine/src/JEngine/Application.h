@@ -1,11 +1,11 @@
 #pragma once
-#include "core.h"
-#include "Window.h"
+#include "JEngine/Core/core.h"
+#include "JEngine/Core/Window.h"
 #include "JEngine/Events/Event.h"
 #include "Events/MouseEvent.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/KeyEvent.h"
-#include "LayerStack.h"
+#include "JEngine/Core/LayerStack.h"
 
 #include "JEngine/ImGui/ImGuiLayer.h"
 

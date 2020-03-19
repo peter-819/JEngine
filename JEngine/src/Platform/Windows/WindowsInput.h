@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JEngine/core.h"
-#include "JEngine/Input.h"
+#include "JEngine/Core/core.h"
+#include "JEngine/Core/Input.h"
 
 namespace JEngine {
 	class WindowsInput : public Input {

@@ -17,7 +17,7 @@
 #include <sstream>
 #include <fstream>
 
-#include <JEngine/Log.h>
+#include <JEngine/Core/Log.h>
 
 #ifdef JE_PLATFORM_WINDOWS
 	#include <Windows.h>

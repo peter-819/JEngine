@@ -1,9 +1,9 @@
 #include <JEpch.h>
 
 #include "Application.h"
-#include "Log.h"
+#include "JEngine/Core/Log.h"
 #include <glad/glad.h>
-#include "Input.h"
+#include "JEngine/Core/Input.h"
 #include "JEngine/Renderer/BufferLayout.h"
 #include "JEngine/Renderer/RenderCommand.h"
 

@@ -1,7 +1,7 @@
 #include "JEpch.h"
 #include "ProjectiveCameraController.h"
-#include "JEngine/Input.h"
-#include "JEngine/keycode.h"
+#include "JEngine/Core/Input.h"
+#include "JEngine/Events/keycode.h"
 #include "gtx/transform.hpp"
 
 namespace JEngine {

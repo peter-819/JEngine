@@ -11,6 +11,7 @@ namespace JEngine {
 		float DiffuseLightScalar;
 		float SpecularLightRadius;
 		float SpecularLightPow;
+		bool isAbled;
 
 	public:
 		Light() {}

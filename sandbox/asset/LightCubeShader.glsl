@@ -6,7 +6,8 @@ in layout(location=1) vec3 vertexColor;
 in layout(location=2) vec3 normal;
 
 uniform mat4 TransformMatrix;
-uniform mat4 FullMatrix;
+uniform mat4 CameraMatrix;
+uniform mat4 ProjectionMatrix;
 
 out vec3 thePosition;
 out vec3 theNormal;
@@ -16,7 +17,7 @@ out vec3 theColor;
 void main()
 {
 	vec4 v = vec4(position,1.0);
-	gl_Position = FullMatrix * v;
+	gl_Position = ProjectionMatrix * CameraMatrix * TransformMatrix * v;
 	theColor = vertexColor;
 }
 

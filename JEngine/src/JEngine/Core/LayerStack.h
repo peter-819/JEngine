@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JEngine/core.h>
+#include <JEngine/Core/core.h>
 #include "Layer.h"
 
 namespace JEngine {

@@ -6,7 +6,7 @@
 #include <examples/imgui_impl_opengl3.h>
 
 #include "JEngine/Application.h"
-#include "JEngine/core.h"
+#include "JEngine/Core/core.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

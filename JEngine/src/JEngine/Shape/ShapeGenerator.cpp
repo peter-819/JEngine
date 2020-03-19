@@ -184,5 +184,6 @@ namespace JEngine {
 			return makeTriangle();
 		}
 		JE_CORE_ASSERT(false, "Invalid Shape!");
+		exit(1);
 	}
 }

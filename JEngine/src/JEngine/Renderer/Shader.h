@@ -23,6 +23,8 @@ namespace JEngine {
 		virtual void SetMat3(const std::string& name, const glm::mat3& matrix) = 0;
 		virtual void SetMat4(const std::string& name, const glm::mat4& matrix) = 0;
 
+		virtual void SetBool(const std::string& name, bool value) = 0;
+
 	};
 
 	class ShaderLibrary {

@@ -23,6 +23,8 @@ namespace JEngine {
 		virtual void SetMat3(const std::string& name, const glm::mat3& matrix) override;
 		virtual void SetMat4(const std::string& name, const glm::mat4& matrix) override;
 
+		virtual void SetBool(const std::string& name, bool value) override;
+
 		void UpLoadUniformFloat (const std::string& name, float value);
 		void UpLoadUniformFloat2(const std::string& name, const glm::vec2& value);
 		void UpLoadUniformFloat3(const std::string& name, const glm::vec3& value);
@@ -31,7 +33,8 @@ namespace JEngine {
 		void UpLoadUniformMat3(const std::string& name, const glm::mat3& matrix);
 		void UpLoadUniformMat4(const std::string& name, const glm::mat4& matrix);
 
-		
+		void UpLoadUniformBool(const std::string& name, bool value);
+
 	private:
 		void Compile(const std::unordered_map<GLenum, std::string>& ShaderSource);
 		std::string ReadSource(const std::string& filepath);
