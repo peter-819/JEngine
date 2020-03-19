@@ -1,2 +1,2 @@
 # JEngine
-A building Game Engine learning on Youtube 
+A building Game Engine.
