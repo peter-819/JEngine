@@ -1,4 +1,5 @@
 #include <memory>
+#include "Log.h"
 
 #ifdef JE_PLATFORM_WINDOWS
 	#ifdef JE_EXPORT_DLL

@@ -1,43 +1,21 @@
 #include "JEpch.h"
-#include "ShapeGenerator.h"
-#include "ShapeData.h"
-#include "asset/teapot.h"
+#include "MeshGenerator.h"
+#include "Mesh.h"
 
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <assimp/DefaultLogger.hpp>
+#include <assimp/LogStream.hpp>
 namespace JEngine {
 #define NUM_ELEMENTS_OF(x) sizeof(x)/sizeof(*x)
 
 	using glm::vec3;
-	ShapeData ShapeGenerator::makeTriangle() {
-		Vertex verts[] = {
-			glm::vec3(-1.0f, -1.0f, +0.0f),
-			glm::vec3(+1.0f, +0.0f, +0.0f),
-
-			glm::vec3(+0.0f, +1.0f, +0.0f),
-			glm::vec3(+0.0f, +1.0f, +0.0f),
-
-			glm::vec3(+1.0f, -1.0f, +0.0f),
-			glm::vec3(+0.0f, +0.0f, +1.0f),
-		};
-		uint32_t ind[] = { 0,1,2 };
-
-		ShapeData Tri;
-
-		Tri.NumVertices = NUM_ELEMENTS_OF(verts);
-		Tri.Vertices = new Vertex[Tri.NumVertices];
-		memcpy(Tri.Vertices, verts, sizeof(verts));
-
-		Tri.NumIndices = NUM_ELEMENTS_OF(ind);
-		Tri.Indices = new uint32_t[Tri.NumIndices];
-		memcpy(Tri.Indices, ind, sizeof(ind));
-
-		return Tri;
-	}
 
 	vec3 getNormal(vec3 v1, vec3 v2, vec3 v3) {
 		return glm::normalize(glm::cross(v2 - v1, v3 - v1));
 	}
 
-	ShapeData ShapeGenerator::makeCube() {
+	Ref<Mesh> MeshGenerator::makeCube() {
 		vec3 vecs[] = {
 			vec3(-1.0f, +1.0f, +1.0f), //1
 			vec3(+1.0f, +0.0f, +0.0f), //
@@ -102,7 +80,8 @@ namespace JEngine {
 			20 ,22 ,21, 20, 23, 22,
 		};
 		Vertex * verts = new Vertex[24];
-		ShapeData Shape;
+		Ref<Mesh> mesh;
+		mesh.reset(new Mesh());
 
 		for (int i = 0; i < 6; i++) {
 			int k = i * 4;
@@ -114,76 +93,58 @@ namespace JEngine {
 				verts[temp].normal = nor;
 			}
 		}
-		Shape.NumVertices = 24;
-		Shape.Vertices = new Vertex[Shape.NumVertices];
-		memcpy(Shape.Vertices, verts, sizeof(Vertex) * Shape.NumVertices);
-
-		Shape.NumIndices = 36;
-		Shape.Indices = new uint32_t[Shape.NumIndices];
-		memcpy(Shape.Indices, ind, sizeof(uint32_t) * Shape.NumIndices);
+		mesh->m_Vertices.resize(24);
+		mesh->m_Indices.resize(12);
+		std::copy(verts, verts + 24, mesh->m_Vertices.begin());
+		std::copy((Index*)ind, (Index*)ind + 12, mesh->m_Indices.begin());
+		mesh->SetVAO();
 
 		delete[] verts;
-
-		return Shape;
+		
+		return mesh;
 	}
 
-	void ShapeGenerator::getPlaneVertices(int dimension, uint32_t& Num, Vertex * &ver) {
-		Num = dimension * dimension;
-		ver = new Vertex[Num];
-		int runner = 0, half = dimension / 2;
+	void MeshGenerator::getPlaneVertices(int dimension, std::vector<Vertex> &ver) {
+		int Num = dimension * dimension;
+		int half = dimension / 2;
 		for (int i = 0; i < dimension; i++)
 			for (int j = 0; j < dimension; j++) {
-				ver[runner].position = vec3(i - half, 0, j - half);
-				ver[runner].color = vec3(1.0, 1.0, 0.0);
-				ver[runner].normal = vec3(0.0, 1.0, 0.0);
-				runner++;
+				Vertex v;
+				v.position = vec3(i - half, 0, j - half);
+				v.color = vec3(1.0, 1.0, 0.0);
+				v.normal = vec3(0.0, 1.0, 0.0);
+				ver.push_back(v);
 			}
-
 	}
 
-	void ShapeGenerator::getPlaneIndices(int dimension, uint32_t& Num, uint32_t* &ind) {
-		Num = (dimension - 1) * (dimension - 1) * 2 * 3;
-		ind = new uint32_t[Num];
+	void MeshGenerator::getPlaneIndices(int dimension, std::vector<Index> &ind) {
+		int Num = (dimension - 1) * (dimension - 1) * 2 * 3;
 		int runner = 0;
 		for (int i = 0; i < dimension - 1; i++)
 			for (int j = 0; j < dimension - 1; j++) {
-				ind[runner++] = i * dimension + j;
-				ind[runner++] = i * dimension + j + 1;
-				ind[runner++] = (i + 1) * dimension + j + 1;
+				Index a, b;
+				a.v0 = i * dimension + j;
+				a.v1 = i * dimension + j + 1;
+				a.v2 = (i + 1) * dimension + j + 1;
 
-				ind[runner++] = i * dimension + j;
-				ind[runner++] = (i + 1) * dimension + j + 1;
-				ind[runner++] = (i + 1) * dimension + j;
+				b.v0 = i * dimension + j;
+				b.v1 = (i + 1) * dimension + j + 1;
+				b.v2 = (i + 1) * dimension + j;
+				ind.push_back(a);
+				ind.push_back(b);
 			}
+
 	}
 
-	ShapeData ShapeGenerator::makePlane(int dimension = 10) {
-		ShapeData plane;
-		getPlaneVertices(dimension, plane.NumVertices, plane.Vertices);
-		getPlaneIndices(dimension, plane.NumIndices, plane.Indices);
-		return plane;
+	Ref<Mesh> MeshGenerator::makePlane(int dimension = 10) {
+		Ref<Mesh> mesh;
+		mesh.reset(new Mesh());
+
+		getPlaneVertices(dimension, mesh->m_Vertices);
+		getPlaneIndices(dimension, mesh->m_Indices);
+		mesh->SetVAO();
+		
+		return mesh;
 	}
 
-	ShapeData ShapeGenerator::makeTeapot(int grid) {
-		ShapeData teapot;
-		Teapot::GetTeapot(teapot, grid);
-		return teapot;
-	}
-
-	ShapeData ShapeGenerator::makeShape(Shape shape,int val) {
-		switch (shape) {
-		case Shape::None:
-			JE_CORE_ASSERT(false, "Invalid Shape!");
-		case Shape::Plane:
-			return makePlane(val);
-		case Shape::Cube:
-			return makeCube();
-		case Shape::Teapot:
-			return makeTeapot(val);
-		case Shape::Triangle:
-			return makeTriangle();
-		}
-		JE_CORE_ASSERT(false, "Invalid Shape!");
-		exit(1);
-	}
 }

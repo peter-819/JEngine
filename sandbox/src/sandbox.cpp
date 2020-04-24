@@ -8,12 +8,12 @@
 #include "imgui.h"
 
 enum ShapeID{
-	Teapot,Cube,Plane
+	Teapot,Cube,Plane,FileShape
 };
 
 class ExampleLayer : public JEngine::Layer {
 public:
-	ExampleLayer() :Layer("Example"){}
+	ExampleLayer() :Layer("Example"),m_Mesh(".\\asset\\Donut2.fbx"){}
 
 	void OnImGuiRender() override {
 		ImGui::SetNextWindowSizeConstraints(ImVec2(500, 200), ImVec2(1000, 1000));
@@ -57,10 +57,10 @@ public:
 		m_shaders.Load(".\\asset\\LightCubeShader.glsl");
 
 		m_Light[0].setLight({ -5.0f, 4.0f, 5.0f }, 0.2f, 0.6f, 6.0f, 20.0f);
+		m_Plane = JEngine::MeshGenerator::makePlane(50);
+		m_Cube = JEngine::MeshGenerator::makeCube();
 		//m_Light.BindShader(m_shader);
-		DrawShape(Teapot, JEngine::Shape::Teapot, 10);
-		DrawShape(Cube, JEngine::Shape::Cube);
-		DrawShape(Plane, JEngine::Shape::Plane, 40);
+
 	}
 
 	void setUniforms(JEngine::Ref<JEngine::Shader> shader) {
@@ -94,14 +94,17 @@ public:
 
 		JEngine::Renderer::BeginScene(m_CameraController.GetCamera());
 		transform = glm::translate(glm::vec3(0.0f, 0.5f, 0.0f)) * glm::rotate(glm::radians(-90.0f),glm::vec3(1.0f,0.0f,0.0f));
-		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"), m_shape_VertexArray[Teapot], transform);
 
 		for (int i = 0; i < LightNum; i++) {
 			transform = glm::translate(m_Light[i].getLightPosition()) * glm::scale(glm::vec3(0.3f, 0.3f, 0.3f));
-			JEngine::Renderer::Submit(m_shaders.Get("LightCubeShader"), m_shape_VertexArray[Cube], transform);
+			m_Cube->render(transform, m_shaders.Get("LightCubeShader"));
 		}
-		
-		JEngine::Renderer::Submit(m_shaders.Get("ColorShader"), m_shape_VertexArray[Plane], glm::mat4(1.0f));
+
+		transform = glm::translate(glm::vec3(0.0f, 1.0f, 0.0f))
+			* glm::scale(glm::vec3(10.0f, 10.0f, 10.0f))
+			* glm::rotate(-glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		m_Mesh.render(transform, m_shaders.Get("ColorShader"));
+		m_Plane->render(glm::mat4(1.0f), m_shaders.Get("ColorShader"));
 
 		JEngine::Renderer::EndScene();
 	}
@@ -109,30 +112,9 @@ public:
 	void OnEvent(JEngine::Event& event) override {
 		m_CameraController.OnEvent(event);
 	}
-
-	void DrawShape(int ShapeID, JEngine::Shape ShapeName,int val = 10) {
-		m_shape_VertexArray[ShapeID].reset(JEngine::VertexArray::Create());
-
-		JEngine::Ref<JEngine::VertexBuffer> vertexbuffer;
-		JEngine::Ref<JEngine::IndexBuffer> indexbuffer;
-
-		JEngine::ShapeData shape = JEngine::ShapeGenerator::makeShape(ShapeName,val);
-
-		vertexbuffer.reset(JEngine::VertexBuffer::Create(shape));
-		vertexbuffer->SetLayout({
-				{"Position", JEngine::ShaderDataType::Float3},
-				{"Color", JEngine::ShaderDataType::Float3},
-				{"Normal", JEngine::ShaderDataType::Float3}
-			});
-
-		indexbuffer.reset(JEngine::IndexBuffer::Create(shape));
-
-		m_shape_VertexArray[ShapeID]->AddVertexBuffer(vertexbuffer);
-		m_shape_VertexArray[ShapeID]->AddIndexBuffer(indexbuffer);
-		shape.CleanUp();
-	}
 private:
-	JEngine::Ref<JEngine::VertexArray> m_shape_VertexArray[10];
+	JEngine::Mesh m_Mesh;
+	JEngine::Ref<JEngine::Mesh> m_Plane, m_Cube;
 	JEngine::ShaderLibrary m_shaders;
 	JEngine::ProjectiveCameraController m_CameraController;
 	JEngine::Light m_Light[10];

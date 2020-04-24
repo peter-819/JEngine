@@ -27,8 +27,8 @@
 #include "JEngine/Renderer/Camera/ProjectiveCameraController.h"
 #include "JEngine/Renderer/Light/Light.h"
 
-#include "JEngine/Shape/ShapeData.h"
-#include "JEngine/Shape/ShapeGenerator.h"
+#include "JEngine/Shape/Mesh.h"
+#include "JEngine/Shape/MeshGenerator.h"
 
 #include "JEngine/Core/TimeStep.h"
 

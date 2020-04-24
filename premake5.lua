@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "JEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "JEngine/vendor/Glad/include"
 IncludeDir["JEimgui"] = "JEngine/vendor/JEimgui"
 IncludeDir["glm"] = "JEngine/vendor/glm"
+IncludeDir["assimp"] = "JEngine/vendor/assimp/include"
 
 include "JEngine/vendor/GLFW"
 include "JEngine/vendor/Glad"
@@ -53,7 +54,8 @@ project "JEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.JEimgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.assimp}"
 	}
 
 	links
@@ -112,7 +114,8 @@ project "sandbox"
 		"JEngine/vendor/spdlog-1.x/include",
 		"JEngine/src",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.JEimgui}"
+		"%{IncludeDir.JEimgui}",
+		"%{IncludeDir.assimp}"
 	}
 
 	links
@@ -134,13 +137,40 @@ project "sandbox"
 		defines "JE_DEBUG"
 		runtime "Debug"
 		symbols "on"
+		links
+		{
+			"JEngine/vendor/assimp/bin/Debug/assimp-vc141-mtd.lib"
+		}
+
+		postbuildcommands 
+		{
+			'{COPY} "../JEngine/vendor/assimp/bin/Debug/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}
 
 	filter "configurations:Release"
 		defines "JE_RELEASE"
 		runtime "Release"
 		optimize "on"
+		links
+		{
+			"JEngine/vendor/assimp/bin/Release/assimp-vc141-mt.lib"
+		}
+
+		postbuildcommands 
+		{
+			'{COPY} "../JEngine/vendor/assimp/bin/Release/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}
 
 	filter "configurations:Dist"
 		defines "JE_DIST"
 		runtime "Release"
 		optimize "on"	
+		links
+		{
+			"JEngine/vendor/assimp/bin/Release/assimp-vc141-mt.lib"
+		}
+
+		postbuildcommands 
+		{
+			'{COPY} "../JEngine/vendor/assimp/bin/Release/assimp-vc141-mtd.dll" "%{cfg.targetdir}"'
+		}

@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_EXE;JE_ENABLE_ASSERTS;JE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;..\JEngine\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -88,14 +88,18 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\JEngine\vendor\assimp\bin\Debug\assimp-vc141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST "..\JEngine\vendor\assimp\bin\Debug\assimp-vc141-mtd.dll"\ (xcopy /Q /E /Y /I "..\JEngine\vendor\assimp\bin\Debug\assimp-vc141-mtd.dll" "..\bin\Debug-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I "..\JEngine\vendor\assimp\bin\Debug\assimp-vc141-mtd.dll" "..\bin\Debug-windows-x86_64\sandbox" &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_EXE;JE_ENABLE_ASSERTS;JE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;..\JEngine\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -108,14 +112,18 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll"\ (xcopy /Q /E /Y /I "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll" "..\bin\Release-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll" "..\bin\Release-windows-x86_64\sandbox" &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_EXE;JE_ENABLE_ASSERTS;JE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\JEngine\vendor\spdlog-1.x\include;..\JEngine\src;..\JEngine\vendor\glm;..\JEngine\vendor\JEimgui;..\JEngine\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -128,8 +136,15 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll"\ (xcopy /Q /E /Y /I "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll" "..\bin\Dist-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I "..\JEngine\vendor\assimp\bin\Release\assimp-vc141-mtd.dll" "..\bin\Dist-windows-x86_64\sandbox" &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Test.h" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\sandbox.cpp" />
   </ItemGroup>
