@@ -1,11 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <JEngine.h>
-#include <cstdio>
 
-#include "gtx/transform.hpp"
-#include "glm.hpp"
+//-------  Main File Entry ------//
+#include "JEngine/EntryPoint.h"
 
-#include "imgui.h"
 
 enum ShapeID{
 	Teapot,Cube,Plane,FileShape

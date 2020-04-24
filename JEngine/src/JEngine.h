@@ -33,4 +33,8 @@
 #include "JEngine/Core/TimeStep.h"
 
 //-----------Client Side-------------//
-#include "JEngine/EntryPoint.h"
+//--- TODO: Remove these includes ---//
+#include "gtx/transform.hpp"
+#include "glm.hpp"
+
+#include "imgui.h"
