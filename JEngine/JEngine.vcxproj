@@ -142,10 +142,12 @@
   <ItemGroup>
     <ClInclude Include="src\JEngine.h" />
     <ClInclude Include="src\JEngine\Application.h" />
+    <ClInclude Include="src\JEngine\Core\ErrorLogger.h" />
     <ClInclude Include="src\JEngine\Core\Input.h" />
     <ClInclude Include="src\JEngine\Core\Layer.h" />
     <ClInclude Include="src\JEngine\Core\LayerStack.h" />
     <ClInclude Include="src\JEngine\Core\Log.h" />
+    <ClInclude Include="src\JEngine\Core\StringConverter.h" />
     <ClInclude Include="src\JEngine\Core\TimeStep.h" />
     <ClInclude Include="src\JEngine\Core\Window.h" />
     <ClInclude Include="src\JEngine\Core\core.h" />
@@ -175,6 +177,8 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Platform\WinApi\WinApiGLContext.h" />
+    <ClInclude Include="src\Platform\WinApi\WinApiWindow.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsTimeStep.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -549,10 +553,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp" />
+    <ClCompile Include="src\JEngine\Core\ErrorLogger.cpp" />
     <ClCompile Include="src\JEngine\Core\Layer.cpp" />
     <ClCompile Include="src\JEngine\Core\LayerStack.cpp" />
     <ClCompile Include="src\JEngine\Core\Log.cpp" />
+    <ClCompile Include="src\JEngine\Core\StringConverter.cpp" />
     <ClCompile Include="src\JEngine\Core\TimeStep.cpp" />
+    <ClCompile Include="src\JEngine\Core\Window.cpp" />
     <ClCompile Include="src\JEngine\ImGui\ImGuiBuid.cpp" />
     <ClCompile Include="src\JEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\JEngine\Renderer\Buffer.cpp" />
@@ -573,6 +580,8 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Platform\WinApi\WinApiGLContext.cpp" />
+    <ClCompile Include="src\Platform\WinApi\WinApiWindow.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsTimeStep.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

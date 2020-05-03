@@ -1275,6 +1275,10 @@
     <ClInclude Include="vendor\glm\vector_relational.hpp">
       <Filter>vendor\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\WinApi\WinApiWindow.h" />
+    <ClInclude Include="src\JEngine\Core\StringConverter.h" />
+    <ClInclude Include="src\Platform\WinApi\WinApiGLContext.h" />
+    <ClInclude Include="src\JEngine\Core\ErrorLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\JEngine\Application.cpp">
@@ -1355,5 +1359,10 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\WinApi\WinApiWindow.cpp" />
+    <ClCompile Include="src\JEngine\Core\StringConverter.cpp" />
+    <ClCompile Include="src\JEngine\Core\Window.cpp" />
+    <ClCompile Include="src\Platform\WinApi\WinApiGLContext.cpp" />
+    <ClCompile Include="src\JEngine\Core\ErrorLogger.cpp" />
   </ItemGroup>
 </Project>

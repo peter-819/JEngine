@@ -32,14 +32,6 @@ namespace JEngine {
 
 		GLFWwindow* m_Window;
 		OpenGLContext* m_Context;
-		struct WindowData {
-			std::string Title;
-			unsigned int Width, Height;
-			bool VSync;
-
-			EventCallbackFn EventCallback;
-		};
-
 		WindowData m_Data;
 	};
 }

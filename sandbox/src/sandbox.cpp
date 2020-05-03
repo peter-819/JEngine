@@ -4,7 +4,7 @@
 //-------  Main File Entry ------//
 #include "JEngine/EntryPoint.h"
 
-
+#if 1
 enum ShapeID{
 	Teapot,Cube,Plane,FileShape
 };
@@ -118,6 +118,26 @@ private:
 	JEngine::Light m_Light[10];
 	int LightNum = 1;
 };
+class sandbox : public JEngine::Application {
+public:
+	sandbox() {
+		PushLayer(new ExampleLayer());
+	}
+	~sandbox() {}
+};
+
+JEngine::Application* JEngine::createApplication() {
+	return new sandbox();
+}
+#else
+
+class ExampleLayer : public JEngine::Layer {
+public:
+	ExampleLayer() :Layer("Example") {}
+	void OnImGuiRender() override {}
+	void OnAttach() override{}
+	void OnUpdate(float dt) override{}
+};
 
 class sandbox : public JEngine::Application {
 public:
@@ -130,4 +150,4 @@ public:
 JEngine::Application* JEngine::createApplication() {
 	return new sandbox();
 }
-
+#endif

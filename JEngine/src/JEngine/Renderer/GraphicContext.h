@@ -1,8 +1,8 @@
 #pragma once
 #include "JEpch.h"
-
+#include "JEngine/Core/Window.h"
 namespace JEngine {
-	
+	extern WINDOWAPI WindowAPI;
 	class GraphicContext {
 	
 	public:

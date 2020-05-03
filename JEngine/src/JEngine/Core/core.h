@@ -1,7 +1,10 @@
 #include <memory>
 #include "Log.h"
 
+
+
 #ifdef JE_PLATFORM_WINDOWS
+
 	#ifdef JE_EXPORT_DLL
 		#ifdef JE_BUILD_DLL
 			#define JE_API __declspec(dllexport)	

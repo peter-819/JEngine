@@ -5,6 +5,7 @@
 #include "JEngine/Core/Log.h"
 #include "JEngine/Core/Input.h"
 #include "JEngine/Core/Layer.h"
+#include "JEngine/Core/core.h"
 
 #include "JEngine/Events/KeyEvent.h"
 #include "JEngine/Events/MouseEvent.h"
@@ -38,3 +39,7 @@
 #include "glm.hpp"
 
 #include "imgui.h"
+
+#ifdef JE_PLATFORM_WINDOWS
+#include <Windows.h>
+#endif

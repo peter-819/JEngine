@@ -40,8 +40,9 @@ namespace JEngine {
 		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(JE_BIND_EVENT_FN(Application::OnEvent));
 
-		m_ImGuiLayer = new ImGuiLayer();
-		PushOverLayer(m_ImGuiLayer);
+		RenderCommand::SetViewpot(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
+		//m_ImGuiLayer = new ImGuiLayer();
+		//PushOverLayer(m_ImGuiLayer);
 	}
 
 	void Application::OnEvent(Event& e) {
@@ -82,10 +83,10 @@ namespace JEngine {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate(ts->GetDeltaTime());
 
-			m_ImGuiLayer->Begin();
+			/*m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
+			m_ImGuiLayer->End();*/
 			
 			m_Window->OnUpdate();
 		}

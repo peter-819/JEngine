@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /bin-int/Debug-windows-x86_64
 /JEngine/vendor
+/JEngine_DX
